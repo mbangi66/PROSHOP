@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/products', (req, res) => {
-  res.json(product);
+  res.json(products);
 });
 
 app.get('/api/products/:id', (req, res) => {
