@@ -2,17 +2,13 @@ import mongoose from 'mongoose';
 
 const reviewSchema = mongoose.Schema(
   {
-    name: {
-      type: String,
+    name: { type: String, required: true },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-    },
-    comment: {
-      type: String,
-      required: true,
+      ref: 'User',
     },
   },
   {
@@ -28,43 +24,43 @@ const productSchema = mongoose.Schema(
       ref: 'User',
     },
     name: {
-      types: String,
+      type: String,
       required: true,
     },
     image: {
-      types: String,
+      type: String,
       required: true,
     },
     brand: {
-      types: String,
+      type: String,
       required: true,
     },
     category: {
-      types: String,
+      type: String,
       required: true,
     },
     description: {
-      types: String,
+      type: String,
       required: true,
     },
     reviews: [reviewSchema],
     rating: {
-      types: Number,
+      type: Number,
       required: true,
       default: 0,
     },
     numReviews: {
-      types: Number,
+      type: Number,
       required: true,
       default: 0,
     },
     price: {
-      types: Number,
+      type: Number,
       required: true,
       default: 0,
     },
     countInStock: {
-      types: Number,
+      type: Number,
       required: true,
       default: 0,
     },

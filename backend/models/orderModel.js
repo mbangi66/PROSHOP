@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const orderSchema = mongoose.Schema(
   {
     user: {
-      types: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User',
     },
@@ -20,44 +20,39 @@ const orderSchema = mongoose.Schema(
         },
       },
     ],
-    ShippingAddress: {
-      address: { types: String, required: true },
-      city: { types: String, required: true },
-      postalCode: { types: String, required: true },
-      country: { types: String, required: true },
+    shippingAddress: {
+      address: { type: String, required: true },
+      city: { type: String, required: true },
+      postalCode: { type: String, required: true },
+      country: { type: String, required: true },
     },
     paymentMethod: {
-      types: String,
+      type: String,
       required: true,
     },
     paymentResult: {
-      id: { type: staring },
-      status: { type: staring },
-      update_time: { type: staring },
-      email_address: { type: staring },
+      id: { type: String },
+      status: { type: String },
+      update_time: { type: String },
+      email_address: { type: String },
     },
     taxPrice: {
-      types: Number,
+      type: Number,
       required: true,
       default: 0.0,
     },
-    taxPrice: {
-      types: Number,
-      required: true,
-      default: 0.0,
-    },
-    ShippingPrice: {
-      types: Number,
+    shippingPrice: {
+      type: Number,
       required: true,
       default: 0.0,
     },
     totalPrice: {
-      types: Number,
+      type: Number,
       required: true,
       default: 0.0,
     },
     isPaid: {
-      types: Boolean,
+      type: Boolean,
       required: true,
       default: false,
     },
@@ -65,7 +60,7 @@ const orderSchema = mongoose.Schema(
       type: Date,
     },
     isDelivered: {
-      types: Boolean,
+      type: Boolean,
       required: true,
       default: false,
     },
