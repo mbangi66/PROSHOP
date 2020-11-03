@@ -11,7 +11,7 @@ import {
   Button,
   Card,
 } from 'react-bootstrap';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -24,7 +24,9 @@ const CartScreen = ({ match, location, history }) => {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
-  const removeFromCartHandler = () => {};
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
   const checkoutHandler = (id) => {
     history.push('/login?redirect=shipping');
@@ -72,8 +74,9 @@ const CartScreen = ({ match, location, history }) => {
                       type='button'
                       variant='light'
                       onClick={() => removeFromCartHandler(item.product)}
-                    ></Button>
-                    <i className='fas fa-trash'></i>
+                    >
+                      <i className='fas fa-trash' />
+                    </Button>
                   </Col>
                 </Row>
               </ListGroup.Item>
