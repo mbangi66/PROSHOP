@@ -36,12 +36,10 @@ const CartScreen = ({ match, location, history }) => {
   const checkoutHandler = () => {
     history.push('/login?redirect=shipping');
   };
-  console.log(cartItems.length);
   return (
     <Row>
       <Col md={8}>
         <h1>Shopping Cart</h1>
-        console.log(cartItems.length)
         {cartItems.length === 0 ? (
           <Message>
             Your cart is empty <Link to='/'>Go Back</Link>
