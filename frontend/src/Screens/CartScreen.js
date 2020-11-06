@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Message from '../Components/message';
 import {
   Row,
   Col,
@@ -11,31 +10,38 @@ import {
   Button,
   Card,
 } from 'react-bootstrap';
+import Message from '../Components/message';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
+
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
+
   const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
+
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
 
-  const checkoutHandler = (id) => {
+  const checkoutHandler = () => {
     history.push('/login?redirect=shipping');
   };
-
+  console.log(cartItems.length);
   return (
     <Row>
       <Col md={8}>
         <h1>Shopping Cart</h1>
+        console.log(cartItems.length)
         {cartItems.length === 0 ? (
           <Message>
             Your cart is empty <Link to='/'>Go Back</Link>
@@ -75,7 +81,7 @@ const CartScreen = ({ match, location, history }) => {
                       variant='light'
                       onClick={() => removeFromCartHandler(item.product)}
                     >
-                      <i className='fas fa-trash' />
+                      <i className='fas fa-trash'></i>
                     </Button>
                   </Col>
                 </Row>
